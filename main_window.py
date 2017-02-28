@@ -69,3 +69,16 @@ class MainWindow(QtGui.QMainWindow):
     @QtCore.pyqtSlot()
     def close_application(self):
         self.close()
+
+    def dragEnterEvent(self, e):
+        e.accept()
+
+    def dropEvent(self, e):
+        print 'drop event'
+        # get the relative position from the mime data
+        mime = e.mimeData()
+        if mime.hasUrls():
+            urls = mime.urls()
+            for url in urls:
+                print unicode(url.toLocalFile())
+        e.accept()
