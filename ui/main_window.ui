@@ -14,11 +14,23 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>udivee</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="acceptDrops">
+    <bool>true</bool>
+   </property>
    <layout class="QGridLayout" name="gridLayout">
-    <property name="margin">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
      <number>0</number>
     </property>
     <property name="spacing">
@@ -28,6 +40,9 @@
      <widget class="QMdiArea" name="mdiArea">
       <property name="acceptDrops">
        <bool>true</bool>
+      </property>
+      <property name="viewMode">
+       <enum>QMdiArea::TabbedView</enum>
       </property>
       <property name="documentMode">
        <bool>false</bool>

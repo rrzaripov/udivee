@@ -6,7 +6,8 @@ class DicomFile:
     def __init__(self):
         pass
 
-    def read(self, filename):
+    @staticmethod
+    def read(filename):
         # TODO: implement more intelligent way to read files
         ds = read_file(filename, stop_before_pixels=True, force=True)
         result = dict()

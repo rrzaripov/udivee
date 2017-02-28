@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from PyQt4 import uic
 from PyQt4 import QtGui, QtCore
-from udivee.dicom_file import DicomFile
+from document import Document
+#from udivee.dicom_file import DicomFile
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -55,8 +56,8 @@ class MainWindow(QtGui.QMainWindow):
         filename = QtGui.QFileDialog.getOpenFileName(self, 'Open file', '.',
                                                      'DICOM files (*.dcm);;'
                                                      'All files (*.*)')
-        ds = DicomFile().read(filename)
-        print ds
+        #ds = DicomFile().read(filename)
+        #print ds
 
     @QtCore.pyqtSlot()
     def save_file(self):
@@ -74,11 +75,13 @@ class MainWindow(QtGui.QMainWindow):
         e.accept()
 
     def dropEvent(self, e):
-        print 'drop event'
-        # get the relative position from the mime data
         mime = e.mimeData()
         if mime.hasUrls():
             urls = mime.urls()
             for url in urls:
-                print unicode(url.toLocalFile())
+                d = Document()
+                d.load_file(url.toLocalFile())
+                sub_widget = QtGui.QMdiSubWindow()
+                sub_widget.setWidget(d)
+                self.mdiArea.addSubWindow(sub_widget)
         e.accept()
